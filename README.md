@@ -21,4 +21,10 @@
 - "/equation",
 - "/equationhardwired",
 - "/contradiction",
-- "/simultaneity"
+- "/simultaneity",
+- "/simulationrelativity",
+- "/octyl",
+- "/coeternal",
+- "/delineator",
+- "/intertillage",
+- "/equiangular"

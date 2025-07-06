@@ -10,6 +10,18 @@ openai_api_key = os.getenv('OPENAI_API_KEY')
 client = OpenAI(api_key=openai_api_key)
 app = Flask(__name__)
 
+# SR Lambda Functions
+l_octyl = lambda tau, T: tau / T if T != 0 else float('inf')
+l_coeternal = lambda tau1, tau2, tau3, T1, T2, T3: (
+		(tau3 - 2 * tau2 + tau1) / ((T2 - T1) * (T3 - T2)) 
+		if (T2 - T1) * (T3 - T2) != 0 else float('inf'))
+l_delineator = lambda Xi, T: Xi * T
+l_intertillage = lambda freq, length: [
+    1 if int(freq * t) % 2 == 0 else 0 for t in range(length)
+]
+l_equiangular = lambda a1, a2, a3, tol=1e-5: abs(a1 - a2) < tol and abs(a2 - a3) < tol
+
+
 # Define transcendence
 def transcendence(client, message, context):
     response = client.chat.completions.create(
@@ -365,6 +377,42 @@ def simulation_relativity():
     # Render the content with the LaTeX equations
     return render_template_string(content, equation1=equation1, equation2=equation2)
 
+@app.route('/octyl')
+def octyl():
+	tau = float(request.args.get('tau', 10))
+	T = float(request.args.get('T', 5))
+	return jsonify({'octyl': l_octyl(tau, T)})
+
+@app.route('/coeternal')
+def coeternal():
+	tau1 = float(request.args.get('tau1', 3))
+	tau2 = float(request.args.get('tau2', 5))
+	tau3 = float(request.args.get('tau3', 9))
+	T1 = float(request.args.get('T1', 1))
+	T2 = float(request.args.get('T2', 2))
+	T3 = float(request.args.get('T3', 3))
+	return jsonify({'coeternal': l_coeternal(tau1, tau2, tau3, T1, T2, T3)})
+
+@app.route('/delineator')
+def delineator():
+	Xi = float(request.args.get('Xi', 1.0))
+	T = float(request.args.get('T', 1.0))
+	return jsonify({'delineator': l_delineator(Xi, T)})
+
+@app.route('/intertillage')
+def intertillage():
+	freq = float(request.args.get('freq', 1.0))
+	length = int(request.args.get('length', 10)) 
+	return jsonify({'intertillage': l_intertillage(freq, length)})
+
+@app.route('/equiangular')
+def equiangular():
+	a1 = float(request.args.get('a1', 60))
+	a2 = float(request.args.get('a2', 60))
+	a3 = float(request.args.get('a3', 60))
+	tol = float(request.args.get('tol', 1e-5))
+	return jsonify({'equiangular': l_equiangular(a1, a2, a3, tol)})
+
 @app.route('/api', methods=['GET'])
 def api():
 	api_list = [
@@ -391,7 +439,12 @@ def api():
 		"/equationhardwired",
 		"/contradiction",
 		"/simultaneity",
-		"/simulationrelativity"
+		"/simulationrelativity",
+		"/octyl",
+		"/coeternal",
+		"/delineator",
+		"/intertillage",
+		"/equiangular"
 	]
 
 	# Render the HTML page with the list
