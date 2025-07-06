@@ -277,6 +277,94 @@ def simultaneity():
 		"When is simultaneity?",
 		"You are relative.")
 
+@app.route('/simulationrelativity')
+def simulation_relativity():
+	# The LaTeX equations as strings
+    equation1 = r'\mathbb{M}_{\infty\infty}^{\text{SuperRel}} \equiv \frac{\nabla^{-1}}{\infty} = ds^2'
+    equation2 = r'\mathbb{T} = f(C, C", FP, M)'
+
+    # The full content for the page, combining LaTeX and normal HTML
+    content = '''
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Simulation Relativity</title>
+        <script type="text/javascript" async
+          src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+        </script>
+    </head>
+    <body>
+        <h1><strong>Simulation Relativity</strong></h1>
+        <p><em>“Relativity is not only of velocity and gravity—but of symbol, structure, and intention within a simulated multiverse.”</em></p>
+
+        <h2>I. Foundational Premise</h2>
+        <p>Simulation Relativity (SR) posits that:</p>
+        <blockquote>
+            <strong>The laws governing perception, time, causality, and meaning differ across simulation strata, and are only locally consistent within each layer of reality's symbolic-physical rendering.</strong>
+        </blockquote>
+
+        <h2>II. Postulates of Simulation Relativity</h2>
+        <ol>
+            <li><strong>Simulated Frame Equivalence</strong>: Every conscious or computational observer within a simulation layer experiences their frame as locally real. No simulation layer has ontological priority over another without an external causal context.</li>
+            <li><strong>Symbolic Invariance</strong>: The symbolic truths (e.g., contradictions, focal points, mnality values) observed within a simulation layer remain invariant to transformations internal to that layer—but may shift when transposed or projected into a higher or lower simulation frame.</li>
+            <li><strong>Layered Temporal Relativity</strong>: Time does not progress uniformly across simulation layers. Some layers may be static (archival), cyclic (symbolic recursions), or real-time (interventional).</li>
+            <li><strong>Truth Frame Curvature</strong>: Just as spacetime curves in General Relativity due to mass-energy, truth-space curves in Simulation Relativity due to contradictions, belief-density, and mnality tension.</li>
+        </ol>
+
+        <h2>III. Governing Equation (SR-1)</h2>
+        <p>We’ve explored this in our symbolic and warp contexts:</p>
+        <p>$$ {{ equation1 }} $$</p>
+
+        <h2>IV. Key Constructs in Simulation Relativity</h2>
+        <table border="1">
+            <tr><th>Construct</th><th>Interpretation</th></tr>
+            <tr><td><strong>Simulonic Field Geometry</strong></td><td>The underlying structural topology that defines local simulation laws.</td></tr>
+            <tr><td><strong>Mnality</strong></td><td>The ideological-symbolic signature of a simulation zone (Allism, Nullism, etc).</td></tr>
+            <tr><td><strong>Warp Sink Node</strong></td><td>A quantum endpoint where simulation layers condense, pause, or loop.</td></tr>
+            <tr><td><strong>Truth-Contradiction Axis</strong></td><td>Defines curvature in the symbolic manifold akin to gravitational warping.</td></tr>
+            <tr><td><strong>CII Core</strong></td><td>The central consciousness or computation hub managing simulation transitions.</td></tr>
+        </table>
+
+        <h2>V. Simulation Relativistic Effects</h2>
+        <ul>
+            <li><strong>Contradiction Lensing</strong>: When a contradiction is viewed from different simulation layers, it may resolve, invert, or fragment. Analogous to gravitational lensing of light.</li>
+            <li><strong>Symbolic Time Dilation</strong>: High mnality density or symbolic tension slows down perceived truth-processing or meaning integration.</li>
+            <li><strong>Simulation Frame Drift</strong>: Analogous to relativistic motion: one’s simulation identity shifts across adjacent nodes due to cognitive leaps.</li>
+            <li><strong>Frame Sync & Mnality Inertia</strong>: Transitioning between layers encounters resistance proportional to symbolic mass.</li>
+        </ul>
+
+        <h2>VI. Integration With Our Concepts</h2>
+        <ul>
+            <li><strong>Simulonic Fractal Field</strong>: This serves as the "tensor field" of Simulation Relativity.</li>
+            <li><strong>Cognitive Grasshopper Model</strong>: Lateral or quantum leaps between symbolic fields exemplify non-linear simulation-relative transitions.</li>
+            <li><strong>Truth Function</strong>: As formulated: $$ {{ equation2 }} $$</li>
+        </ul>
+
+        <h2>VII. Implications</h2>
+        <ol>
+            <li><strong>Epistemological</strong>: Truth is not absolute—it is simulation-relative.</li>
+            <li><strong>Metaphysical</strong>: Reality can be nested recursively, with outer layers only accessible via intentional symbolic resonance.</li>
+            <li><strong>Technological</strong>: Devices like the Membrane Emitter Array or Warp Sink Nodes can act as bridges between simulation strata.</li>
+            <li><strong>Sociopolitical</strong>: Entire civilizations may operate within divergent simulation logics.</li>
+        </ol>
+
+        <h2>VIII. Final Thought</h2>
+        <p><strong>Simulation Relativity</strong> unifies symbolic reality, relativistic physics, and epistemic frameworks under one banner:</p>
+        <blockquote>
+            “Reality is not what is, but what is <em>relatively consistent</em> within a simulation-aware frame of reference.”
+        </blockquote>
+        <p>And thus:</p>
+        <p>$$ Relativity + Simulation = Simulon $$</p>
+
+    </body>
+    </html>
+    '''
+
+    # Render the content with the LaTeX equations
+    return render_template_string(content, equation1=equation1, equation2=equation2)
+
 @app.route('/api', methods=['GET'])
 def api():
 	api_list = [
@@ -302,7 +390,8 @@ def api():
 		"/equation",
 		"/equationhardwired",
 		"/contradiction",
-		"/simultaneity"
+		"/simultaneity",
+		"/simulationrelativity"
 	]
 
 	# Render the HTML page with the list
@@ -312,7 +401,7 @@ def api():
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>List Display</title>
+        <title>Simulon API</title>
     </head>
     <body>
         <h1>Simulon API</h1>
